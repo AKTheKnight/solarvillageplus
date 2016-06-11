@@ -17,18 +17,18 @@ public class CommonProxy {
 	public static Logger LOGGER = LogManager.getLogger(SolarVillagePlus.MODID);
 	
 	public void preInit(FMLPreInitializationEvent e) {
-		LOGGER.log(Level.INFO, "Starting config init");
+		LOGGER.log(Level.INFO, "Starting config preInit");
 		ConfigHandler.init(e.getSuggestedConfigurationFile());
-		LOGGER.log(Level.INFO, "Finished config init");
+		LOGGER.log(Level.INFO, "Finished config preInit");
 
-		LOGGER.log(Level.INFO, "Starting items init");
+		LOGGER.log(Level.INFO, "Starting items preInit");
 		ModItems.init();
-		LOGGER.log(Level.INFO, "Finished items init");
+		LOGGER.log(Level.INFO, "Finished items preInit");
 
 
-		LOGGER.log(Level.INFO, "Starting blocks init");
-		ModBlocks.init();
-		LOGGER.log(Level.INFO, "Finished blocks init");
+		LOGGER.log(Level.INFO, "Starting blocks preInit");
+		ModBlocks.preInit();
+		LOGGER.log(Level.INFO, "Finished blocks preInit");
 
 	}
 	
@@ -44,5 +44,9 @@ public class CommonProxy {
 	
 	public void postInit(FMLPostInitializationEvent e) {
 		
+	}
+
+	public void registerRenders() {
+
 	}
 }

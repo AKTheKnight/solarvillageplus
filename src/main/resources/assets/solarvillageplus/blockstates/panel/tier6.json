@@ -1,0 +1,24 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "solarvillageplus:panel",
+    "transform": "forge:default-block",
+    "textures": {
+      "panel": "solarvillageplus:blocks/tier6"
+    }
+  },
+  "variants": {
+    "inventory": [
+      {
+        "parent": "solarvillage:block/panel"
+      }
+    ],
+    "normal": {
+      "model": "solarvillageplus:panel",
+      "textures": {
+        "panel": "solarvillageplus:blocks/tier6"
+      }
+    }
+  }
+}
+

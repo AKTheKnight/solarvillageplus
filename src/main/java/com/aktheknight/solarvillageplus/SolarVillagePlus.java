@@ -1,7 +1,9 @@
 package com.aktheknight.solarvillageplus;
 
 import com.aktheknight.solarvillageplus.common.CommonProxy;
+import com.aktheknight.solarvillageplus.integrations.IntegrationsManager;
 import com.aktheknight.solarvillageplus.util.SolarvillageplusCreativeTab;
+import com.google.common.base.Stopwatch;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -35,15 +37,22 @@ public class SolarVillagePlus {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+
+		final Stopwatch stopwatch = Stopwatch.createStarted();
 		LOGGER.log(Level.INFO, "Starting Pre-Init");
 		proxy.preInit(event);
+
+		IntegrationsManager.instance().index();
+		IntegrationsManager.instance().preInit();
 		LOGGER.log(Level.INFO, "Finished Pre-Init");
+        stopwatch.stop();
 	}
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		LOGGER.log(Level.INFO, "Starting Init");
 	    proxy.init(event);
+        IntegrationsManager.instance().init();
 	    LOGGER.log(Level.INFO, "Finished Init");
 	}
 	
@@ -51,6 +60,7 @@ public class SolarVillagePlus {
 	public void postInit(FMLPostInitializationEvent event) {
 		LOGGER.log(Level.INFO, "Starting Post Init");
 	    proxy.postInit(event);
+        IntegrationsManager.instance().postInit();
 	    LOGGER.log(Level.INFO, "Finished Post Init");
         if (Loader.isModLoaded("Tesla"))
             tesla = true;
