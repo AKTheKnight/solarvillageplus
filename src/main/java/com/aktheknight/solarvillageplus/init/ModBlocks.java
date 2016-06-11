@@ -2,6 +2,7 @@ package com.aktheknight.solarvillageplus.init;
 
 import com.aktheknight.solarvillageplus.SolarVillagePlus;
 import com.aktheknight.solarvillageplus.blocks.SolarPanel;
+import com.aktheknight.solarvillageplus.blocks.tiles.TileEntitySolarPanel;
 import com.aktheknight.solarvillageplus.util.IBlockRenderer;
 import com.aktheknight.solarvillageplus.util.PanelTier;
 import net.minecraft.block.Block;
@@ -17,7 +18,7 @@ public class ModBlocks {
     public static void preInit() {
         for (PanelTier tier : PanelTier.values()) {
             Block panel = new SolarPanel(tier);
-            registerBlock(panel,"panel_"+tier.name().toLowerCase(),true);
+            registerTile(panel,"panel_"+tier.name().toLowerCase(), TileEntitySolarPanel.class,true);
             if(panel instanceof IBlockRenderer) {
                 ((IBlockRenderer) panel).registerBlockRenderer();
                 ((IBlockRenderer) panel).registerBlockItemRenderer();

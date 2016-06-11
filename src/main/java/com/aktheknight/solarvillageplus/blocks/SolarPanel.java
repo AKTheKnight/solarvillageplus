@@ -49,7 +49,7 @@ public class SolarPanel extends Block implements ITileEntityProvider,IBlockRende
         this.resourcePath="panel/"+tier;
         this.tier=tier;
         this.isBlockContainer = true;
-        this.setUnlocalizedName("panel_" + tier);
+        this.setUnlocalizedName(SolarVillagePlus.MODID+".panel_" + tier);
         this.setHardness(0.2F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(SolarVillagePlus.solarvillageplusTab);
@@ -67,7 +67,7 @@ public class SolarPanel extends Block implements ITileEntityProvider,IBlockRende
                 
                 final TileEntitySolarPanel panel = (TileEntitySolarPanel) tile;
                 final SolarPanelContainer container = (SolarPanelContainer) panel.getCapability(TeslaCapabilities.CAPABILITY_HOLDER, EnumFacing.DOWN);
-                playerIn.addChatMessage(new TextComponentString(String.format(I18n.format("message.solarvillageplus.panel.status"), container.getStoredPower(), container.getCapacity(), container.getGen())));
+                playerIn.addChatMessage(new TextComponentString(I18n.format("message.solarvillageplus.panel.status", container.getStoredPower(), container.getCapacity(), container.getGen())));
             }
         }
         

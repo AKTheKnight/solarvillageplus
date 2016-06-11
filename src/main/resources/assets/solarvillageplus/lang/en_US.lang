@@ -1,10 +1,19 @@
 #English Language File
 
 #Blocks
-tile.solarvillageplus.panel.name=Solar Panel
+tile.solarvillageplus.panel_tier1.name=Solar Panel §8(§eTier1§8)§r
+tile.solarvillageplus.panel_tier2.name=Solar Panel §8(§eTier2§8)§r
+tile.solarvillageplus.panel_tier3.name=Solar Panel §8(§eTier3§8)§r
+tile.solarvillageplus.panel_tier4.name=Solar Panel §8(§eTier4§8)§r
+tile.solarvillageplus.panel_tier5.name=Solar Panel §8(§eTier5§8)§r
+tile.solarvillageplus.panel_tier6.name=Solar Panel §8(§eTier6§8)§r
+
+#ItemGroup
+itemGroup.solarvillageplus=§eSolar Village§c+
 
 #Message
 message.solarvillageplus.panel.status=The panel has %dT/%dT. Generating %dT per tick.
 
 #Label
 label.solarvillageplus.energy_fill=Tesla
+label.solarvillageplus.generate=Generating
