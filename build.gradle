@@ -15,7 +15,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "1.0"
-group= "com.aktheknight.assets.solarvillageplus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= "com.aktheknight.solarvillageplus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AKTesting"
 
 minecraft {
