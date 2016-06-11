@@ -28,6 +28,7 @@ minecraft {
 
 repositories {
     maven {
+		name "DankHax"
         url 'http://maven.rubbix.net'
     }
 }
