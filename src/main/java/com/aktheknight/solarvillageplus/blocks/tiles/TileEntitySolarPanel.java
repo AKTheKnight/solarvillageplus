@@ -33,7 +33,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable {
     public NBTTagCompound writeToNBT (NBTTagCompound compound) {
         compound.setLong("capacity", this.container.capacity);
         compound.setInteger("gen", this.container.gen);
-        compound.setLong("StoredPower", this.container.getStoredPower());
+        compound.setLong("storedPower", this.container.getStoredPower());
         return super.writeToNBT(compound);
     }
     

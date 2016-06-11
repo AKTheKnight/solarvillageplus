@@ -26,8 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SolarPanel extends Block implements ITileEntityProvider {
 
-    protected long capacity;
-    protected int gen;
+    private PanelTier tier;
 
     protected static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D);
     
@@ -35,6 +34,7 @@ public class SolarPanel extends Block implements ITileEntityProvider {
         //TODO config
         //super(WATER DAMAGE ? Material.CIRCUITS : Material.IRON);
         super(Material.IRON);
+        this.tier = tier;
         this.isBlockContainer = true;
         this.setUnlocalizedName("panel_" + tier);
         this.setHardness(0.2F);
@@ -78,7 +78,7 @@ public class SolarPanel extends Block implements ITileEntityProvider {
     
     @Override
     public TileEntity createNewTileEntity (World worldIn, int meta) {
-        return new TileEntitySolarPanel();
+        return new TileEntitySolarPanel(tier.getCapacity(), tier.getGen());
     }
     
     @Override

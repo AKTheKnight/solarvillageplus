@@ -18,4 +18,18 @@ public enum PanelTier {
         this.capacity = capacity;
         this.gen = gen;
     }
+
+    public long getCapacity() {
+        return this.capacity;
+    }
+
+    public int getGen() {
+        return this.gen;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.name();
+    }
 }
