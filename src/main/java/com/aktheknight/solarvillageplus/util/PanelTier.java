@@ -20,10 +20,24 @@ public enum PanelTier {
     }
 
     public long getCapacity() {
+<<<<<<< HEAD
         return capacity;
     }
 
     public int getGen() {
         return gen;
+=======
+        return this.capacity;
+    }
+
+    public int getGen() {
+        return this.gen;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.name();
+>>>>>>> refs/remotes/AKTheKnight/master
     }
 }

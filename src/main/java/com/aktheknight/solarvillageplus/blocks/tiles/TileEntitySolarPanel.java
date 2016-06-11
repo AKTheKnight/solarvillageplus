@@ -48,7 +48,13 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
     
     @Override
     public NBTTagCompound writeToNBT (NBTTagCompound compound) {
+<<<<<<< HEAD
         compound.setTag("TeslaContainer",this.container.serializeNBT());
+=======
+        compound.setLong("capacity", this.container.capacity);
+        compound.setInteger("gen", this.container.gen);
+        compound.setLong("storedPower", this.container.getStoredPower());
+>>>>>>> refs/remotes/AKTheKnight/master
         return super.writeToNBT(compound);
     }
     

@@ -35,9 +35,12 @@ import java.util.List;
 
 public class SolarPanel extends Block implements ITileEntityProvider,IBlockRenderer {
 
+<<<<<<< HEAD
     protected long capacity;
     protected int gen;
     protected String resourcePath;
+=======
+>>>>>>> refs/remotes/AKTheKnight/master
     private PanelTier tier;
 
     protected static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D);
@@ -46,8 +49,12 @@ public class SolarPanel extends Block implements ITileEntityProvider,IBlockRende
         //TODO config
         //super(WATER DAMAGE ? Material.CIRCUITS : Material.IRON);
         super(Material.IRON);
+<<<<<<< HEAD
         this.resourcePath="panel/"+tier;
         this.tier=tier;
+=======
+        this.tier = tier;
+>>>>>>> refs/remotes/AKTheKnight/master
         this.isBlockContainer = true;
         this.setUnlocalizedName(SolarVillagePlus.MODID+".panel_" + tier);
         this.setHardness(0.2F);
@@ -91,7 +98,11 @@ public class SolarPanel extends Block implements ITileEntityProvider,IBlockRende
     
     @Override
     public TileEntity createNewTileEntity (World worldIn, int meta) {
+<<<<<<< HEAD
         return new TileEntitySolarPanel(tier.getCapacity(),tier.getGen());
+=======
+        return new TileEntitySolarPanel(tier.getCapacity(), tier.getGen());
+>>>>>>> refs/remotes/AKTheKnight/master
     }
     
     @Override
