@@ -122,7 +122,8 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
         this.worldObj.checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }
 
-    public void onChunkLoad() {
+    @Override
+    public void onLoad() {
         if (this.isInvalid())
             this.validate();
 
