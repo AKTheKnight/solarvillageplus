@@ -1,0 +1,10 @@
+#English Language File
+
+#Blocks
+tile.solarvillageplus.panel.name=Solar Panel
+
+#Message
+message.solarvillageplus.panel.status=The panel has %dT/%dT. Generating %dT per tick.
+
+#Label
+label.solarvillageplus.energy_fill=Tesla

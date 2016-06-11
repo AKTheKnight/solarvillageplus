@@ -1,6 +1,8 @@
 package com.aktheknight.solarvillageplus.util;
 
+import com.aktheknight.solarvillageplus.init.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 /**
@@ -15,6 +17,6 @@ public class SolarvillageplusCreativeTab extends CreativeTabs {
     @Override
     public Item getTabIconItem() {
         //TODO
-        return null;
+        return Items.APPLE;
     }
 }

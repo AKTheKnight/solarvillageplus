@@ -1,14 +1,29 @@
 package com.aktheknight.solarvillageplus.init;
 
 import com.aktheknight.solarvillageplus.SolarVillagePlus;
+import com.aktheknight.solarvillageplus.blocks.SolarPanel;
+import com.aktheknight.solarvillageplus.util.IBlockRenderer;
+import com.aktheknight.solarvillageplus.util.PanelTier;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public final class ModBlocks {
+public class ModBlocks {
 
 	//public static Block shrinkOre;
+	public static Block panel;
+
+    public static void preInit() {
+        for (PanelTier tier : PanelTier.values()) {
+            Block panel = new SolarPanel(tier);
+            registerBlock(panel,"panel_"+tier.name().toLowerCase(),true);
+            if(panel instanceof IBlockRenderer) {
+                ((IBlockRenderer) panel).registerBlockRenderer();
+                ((IBlockRenderer) panel).registerBlockItemRenderer();
+            }
+        }
+    }
 
     public static void init() {
     }
