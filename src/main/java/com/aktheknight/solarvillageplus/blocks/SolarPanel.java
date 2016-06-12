@@ -35,8 +35,6 @@ import java.util.List;
 
 public class SolarPanel extends Block implements ITileEntityProvider,IBlockRenderer {
 
-    protected long capacity;
-    protected int gen;
     protected String resourcePath;
     private PanelTier tier;
 
@@ -67,7 +65,7 @@ public class SolarPanel extends Block implements ITileEntityProvider,IBlockRende
                 
                 final TileEntitySolarPanel panel = (TileEntitySolarPanel) tile;
                 final SolarPanelContainer container = (SolarPanelContainer) panel.getCapability(TeslaCapabilities.CAPABILITY_HOLDER, EnumFacing.DOWN);
-                playerIn.addChatMessage(new TextComponentString(I18n.format("message.solarvillageplus.panel.status", container.getStoredPower(), container.getCapacity(), container.getGen())));
+                playerIn.addChatMessage(new TextComponentString(I18n.format("message.solarvillageplus.panel.status", container.getStoredPower(), container.getCapacity(), container.getOutputRate()/2)));
             }
         }
         

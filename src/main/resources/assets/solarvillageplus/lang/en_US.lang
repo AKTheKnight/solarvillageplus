@@ -12,7 +12,7 @@ tile.solarvillageplus.panel_tier6.name=Solar Panel §8(§eTier6§8)§r
 itemGroup.solarvillageplus=§eSolar Village§c+
 
 #Message
-message.solarvillageplus.panel.status=The panel has %dT/%dT. Generating %dT per tick.
+message.solarvillageplus.panel.status=§7The panel has §e%dT§7/§e%dT§7. Generating §e%dT§7 per tick.
 
 #Label
 label.solarvillageplus.energy_fill=Tesla

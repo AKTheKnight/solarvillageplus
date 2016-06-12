@@ -1,5 +1,6 @@
 package com.aktheknight.solarvillageplus.blocks.tiles;
 
+import com.aktheknight.solarvillageplus.SolarVillagePlus;
 import com.aktheknight.solarvillageplus.integrations.waila.IWailaBodyMessage;
 import com.aktheknight.solarvillageplus.util.LanguageHelper;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,16 +30,20 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
     private int renderedFragment = 0;
     
     public TileEntitySolarPanel(long capacity, int gen) {
-        this.container = new SolarPanelContainer(capacity, gen);
+        this.container = new SolarPanelContainer(capacity,gen,gen*2);
     }
 
     @Override
     public void update () {
-        if (this.hasWorldObj() && !this.worldObj.provider.getHasNoSky() && this.worldObj.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.worldObj.isRaining() && this.worldObj.getSkylightSubtracted() == 0 && this.container.getStoredPower() != this.container.getCapacity())
-            this.container.generatePower();
+        if (this.hasWorldObj() && !this.worldObj.provider.getHasNoSky() && this.worldObj.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.worldObj.isRaining() && this.worldObj.getSkylightSubtracted() == 0 && this.container.getStoredPower() != this.container.getCapacity()) {
+
+            SolarVillagePlus.proxy.LOGGER.log(Level.INFO,"I tried to generated power");
+            this.container.givePower(container.getOutputRate()/2,false);
+
+        }
         TileEntity tileCheck = worldObj.getTileEntity(this.pos.down());
         if(tileCheck!=null&& tileCheck.hasCapability(TeslaCapabilities.CAPABILITY_CONSUMER,EnumFacing.UP))
-            container.takePower(tileCheck.getCapability(TeslaCapabilities.CAPABILITY_CONSUMER,EnumFacing.UP).givePower(container.getGen()*2,false),false);
+            container.takePower(tileCheck.getCapability(TeslaCapabilities.CAPABILITY_CONSUMER,EnumFacing.UP).givePower(container.getOutputRate(),false),false);
     }
     
     @Override
@@ -64,17 +70,19 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
 
     @Override
     public List<String> getWailaBodyToolTip(ItemStack itemStack, List<String> currentTip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        int percent = (int) ((container.getStoredPower() * 100 / container.getCapacity()));
-        currentTip.add(String.format("%s: §e%d§8/§e%d§7 (§e%d%%§7)",
-                LanguageHelper.LABEL.translateMessage("energy_fill"),
-                container.getStoredPower(),
-                container.getCapacity(),
-                Math.round(percent)
-        ));
-        currentTip.add(String.format("%s: §e%dT§7/tick",
-                LanguageHelper.LABEL.translateMessage("generate"),
-                this.container.getGen()
-        ));
+        if(this.container.getStoredPower()>0) {
+            int percent = (int) ((this.container.getStoredPower() * 100 / this.container.getCapacity()));
+            currentTip.add(String.format("%s: §e%d§8/§e%d§7 (§e%d%%§7)",
+                    LanguageHelper.LABEL.translateMessage("energy_fill"),
+                    this.container.getStoredPower(),
+                    this.container.getCapacity(),
+                    Math.round(percent)
+            ));
+            currentTip.add(String.format("%s: §e%dT§7/tick",
+                    LanguageHelper.LABEL.translateMessage("generate"),
+                    this.container.getOutputRate()/2
+            ));
+        }
         return currentTip;
     }
 
@@ -83,7 +91,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
     public SPacketUpdateTileEntity getUpdatePacket() {
         NBTTagCompound data = new NBTTagCompound();
         writeToNBT(data);
-        return new SPacketUpdateTileEntity(this.pos, 1, data);
+        return new SPacketUpdateTileEntity(this.pos, 0, data);
     }
 
     @Override
@@ -109,6 +117,17 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
             this.worldObj.notifyBlockOfStateChange(new BlockPos(xCoord, yCoord - 1, zCoord + 1), block);
         }
     }
+
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt) {
+        super.deserializeNBT(nbt);
+    }
+
+    @Override
+    public NBTTagCompound serializeNBT() {
+        return super.serializeNBT();
+    }
+
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
@@ -143,6 +162,7 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
         worldObj.markBlockRangeForRenderUpdate(this.pos, this.pos);
         markForUpdate();
     }
+
 
     @Override
     public boolean hasCapability (Capability<?> capability, EnumFacing facing) {
