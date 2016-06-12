@@ -36,8 +36,6 @@ public class TileEntitySolarPanel extends TileEntity implements ITickable,IWaila
     @Override
     public void update () {
         if (this.hasWorldObj() && !this.worldObj.provider.getHasNoSky() && this.worldObj.canBlockSeeSky(this.pos.offset(EnumFacing.UP)) && !this.worldObj.isRaining() && this.worldObj.getSkylightSubtracted() == 0 && this.container.getStoredPower() != this.container.getCapacity()) {
-
-            SolarVillagePlus.proxy.LOGGER.log(Level.INFO,"I tried to generated power");
             this.container.givePower(container.getOutputRate()/2,false);
 
         }
