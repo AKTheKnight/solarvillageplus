@@ -5,6 +5,7 @@ import com.aktheknight.solarvillageplus.integrations.IntegrationsManager;
 import com.aktheknight.solarvillageplus.util.SolarvillageplusCreativeTab;
 import com.google.common.base.Stopwatch;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -27,6 +28,7 @@ public class SolarVillagePlus {
 	
 	@Mod.Instance
 	public static SolarVillagePlus instance;
+	public static Configuration configuration;
 
 	public static CreativeTabs solarvillageplusTab = new SolarvillageplusCreativeTab(CreativeTabs.getNextID(), "solarvillageplus");
 	

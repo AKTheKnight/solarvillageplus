@@ -2,6 +2,7 @@ package com.aktheknight.solarvillageplus.common;
 
 import com.aktheknight.solarvillageplus.SolarVillagePlus;
 import com.aktheknight.solarvillageplus.ConfigHandler;
+import com.aktheknight.solarvillageplus.common.config.Config;
 import com.aktheknight.solarvillageplus.init.ModBlocks;
 import com.aktheknight.solarvillageplus.init.ModItems;
 import com.aktheknight.solarvillageplus.init.ModRecipes;
@@ -12,18 +13,28 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+
 public class CommonProxy {
 	
 	public static Logger LOGGER = LogManager.getLogger(SolarVillagePlus.MODID);
 	
 	public void preInit(FMLPreInitializationEvent e) {
 		LOGGER.log(Level.INFO, "Starting config preInit");
-		ConfigHandler.init(e.getSuggestedConfigurationFile());
+
+		final File folder = new File(e.getModConfigurationDirectory(), "SolarVillagePlus/");
+
+		if (!folder.exists())
+			folder.mkdir();
+
+		registerConfiguration(new File(folder, "Config.cfg"));
+
 		LOGGER.log(Level.INFO, "Finished config preInit");
 
 		LOGGER.log(Level.INFO, "Starting items preInit");
 		ModItems.init();
 		LOGGER.log(Level.INFO, "Finished items preInit");
+
 
 
 		LOGGER.log(Level.INFO, "Starting blocks preInit");
@@ -48,5 +59,9 @@ public class CommonProxy {
 
 	public void registerRenders() {
 
+	}
+
+	public void registerConfiguration(File configFile) {
+		SolarVillagePlus.configuration = Config.initConfig(configFile);
 	}
 }
