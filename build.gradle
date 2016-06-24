@@ -14,12 +14,16 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.0"
-group= "com.aktheknight.solarvillageplus" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "AKTesting"
+def cibuild = System.getenv("BUILD_NUMBER")
+def jenkinsBuild = cibuild != null ? cibuild : "0"
+
+group= "com.aktheknight.solarvillageplus"
+
+version = minecraft_version + "-" + cibuild + "-univeral"
+archivesBaseName = cibasename
 
 minecraft {
-    version = "1.9.4-12.17.0.1957"
+    version = minecraft_version + "-" + forge_version
     runDir = "run"
     
     mappings = "snapshot_20160518"
@@ -28,8 +32,8 @@ minecraft {
 
 repositories {
     maven {
-		name "DankHax"
-        url 'http://maven.rubbix.net'
+		name "Tesla"
+        url 'http://maven.epoxide.xyz'
     }
 	maven {
 	    name 'Mobius'
