@@ -1,5 +1,7 @@
 #Solar Village Plus
 
+[![Build Status](http://jenkins.aktheknight.co.uk/job/Solar%20Village%20Plus/badge/icon)](http://jenkins.aktheknight.co.uk/job/Solar%20Village%20Plus/)
+
 Solar Village Plus is a simple mod that expands Darkhax's original Solar Village to add more solar panels
 
 [![CurseForge](https://img.shields.io/badge/Curse-Forge-orange.svg)](http://minecraft.curseforge.com/projects/solar-village-plus)
