@@ -45,6 +45,18 @@ public class RecipeLoader {
 						'a', "panelGlass"
 				)
 		);
+		if(Items.tinIngot.isLoaded()) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier3),
+							"   ",
+							"cac",
+							"gpg",
+							'g', "ingotTin",
+							'p', getPanel(PanelTier.tier2),
+							'a', "panelGlass",
+							'c', net.minecraft.init.Items.EMERALD
+					)
+			);
+		}
 	}
 	public static Block getPanel(PanelTier tier) {
 		return Block.getBlockFromName("solarvillageplus:panel_"+tier.toString());

@@ -7,6 +7,7 @@ public enum LanguageHelper {
     MESSAGE("message"),
     LABEL("label"),
     BLOCK("tile"),
+    ITEMGROUP("itemGroup"),
     ITEM("item"),
     DESCRIPTION("description"),
     JEI("jei"),
@@ -19,9 +20,8 @@ public enum LanguageHelper {
     }
 
     public String translateMessage(String message) {
-        if (this.name == "")
+        if (this == NONE)
             return I18n.format(message);
-
         return I18n.format(String.format("%s.%s.%s", this.name, SolarVillagePlus.MODID, message));
     }
 

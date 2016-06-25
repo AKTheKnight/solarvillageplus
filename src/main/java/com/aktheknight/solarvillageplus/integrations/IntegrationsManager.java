@@ -23,6 +23,7 @@ public class IntegrationsManager {
 
         try {
             integrationClasses.put(IntegrationModIDs.WAILA, Waila.class);
+            integrationClasses.put(IntegrationModIDs.TECH_REIMAGINED,TechReimagined.class);
         } catch (Throwable ex) {
             ex.printStackTrace();
         }
