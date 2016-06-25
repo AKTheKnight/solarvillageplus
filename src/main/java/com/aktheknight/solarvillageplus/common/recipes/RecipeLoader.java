@@ -1,6 +1,7 @@
 package com.aktheknight.solarvillageplus.common.recipes;
 
 import com.aktheknight.solarvillageplus.common.CommonProxy;
+import com.aktheknight.solarvillageplus.common.config.ConfigPanels;
 import com.aktheknight.solarvillageplus.util.PanelTier;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -25,37 +26,41 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
  */
 public class RecipeLoader {
 	public static void init() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier1),
-						"   ",
-						"qaq",
-						"gpg",
-						'q', "ingotGold",
-						'g', "ingotIron",
-						'p', net.minecraft.init.Blocks.DAYLIGHT_DETECTOR,
-						'a', "dustRedstone"
-				)
-		);
-		GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier2),
-						"   ",
-						"qaq",
-						"gpg",
-						'q', "gemDiamond",
-						'g', "ingotIron",
-						'p', getPanel(PanelTier.tier1),
-						'a', "panelGlass"
-				)
-		);
-		if(Items.tinIngot.isLoaded()) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier3),
+		if(ConfigPanels.Panels.get(PanelTier.tier1).Enabled) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier1),
 							"   ",
-							"cac",
+							"qaq",
 							"gpg",
-							'g', "ingotTin",
-							'p', getPanel(PanelTier.tier2),
-							'a', "panelGlass",
-							'c', net.minecraft.init.Items.EMERALD
+							'q', "ingotGold",
+							'g', "ingotIron",
+							'p', net.minecraft.init.Blocks.DAYLIGHT_DETECTOR,
+							'a', "dustRedstone"
 					)
 			);
+		}
+		if(ConfigPanels.Panels.get(PanelTier.tier2).Enabled) {
+			GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier2),
+							"   ",
+							"qaq",
+							"gpg",
+							'q', "gemDiamond",
+							'g', "ingotIron",
+							'p', getPanel(PanelTier.tier1),
+							'a', "panelGlass"
+					)
+			);
+		}
+		if(ConfigPanels.Panels.get(PanelTier.tier3).Enabled&&Items.tinIngot.isLoaded()) {
+				GameRegistry.addRecipe(new ShapedOreRecipe(getPanel(PanelTier.tier3),
+								"   ",
+								"cac",
+								"gpg",
+								'g', "ingotTin",
+								'p', getPanel(PanelTier.tier2),
+								'a', "panelGlass",
+								'c', net.minecraft.init.Items.EMERALD
+						)
+				);
 		}
 	}
 	public static Block getPanel(PanelTier tier) {
